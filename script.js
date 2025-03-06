@@ -4,6 +4,7 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 const searchSteps = document.getElementById("search-steps");
 const searchStepsHead = document.getElementById("search-steps-head");
+const sideNotes = document.getElementById("side-notes")
 let arr = [10, 30, 20, 40, 50]; // Sample array
 
 function drawArray(highlightIndex = -1, foundIndex = -1, low = -1, high = -1, mid = -1) {
@@ -104,7 +105,7 @@ async function binarySearch() {
     
     while (left <= right) {
         let mid = Math.floor((left + right) / 2);
-        searchSteps.innerText += `Low: ${left}, Mid: ${mid}, High: ${right}\n`;
+        searchSteps.innerText += `🟥Low: ${left}, 🟨Mid: ${mid}, 🟪High: ${right}\n`;
         drawArray(-1, -1, left, right, mid);
         
         await new Promise(resolve => setTimeout(resolve, 1000)); // Slower delay for better visibility
@@ -123,5 +124,39 @@ async function binarySearch() {
     drawArray();
     searchStepsHead.innerText = "Binary Search\n";
 }
+
+
+    // making notes
+
+    sideNotes.addEventListener(('click'),(event) => {
+        sideNotes.innerHTML = `<br><br><br>
+        <h2>Searching in an Array</h2><br>
+        When we need to find an element in an array, we use searching algorithms. 
+        The two most common searching techniques are Linear Search and Binary Search.<br><br>
+
+        <h2>1. Linear Search</h2><br>
+        Linear search checks each element one by one until the desired element is found or the entire array is searched.<br><br>
+
+        <h3>Steps for Linear Search:</h3><br>
+        1. Start from the first element.<br>
+        2. Compare it with the search value.<br>
+        3. If found, return the index.<br>
+        4. If not, move to the next element.<br>
+        5. Repeat until the end of the array.<br><br>
+
+        <h2>2. Binary Search</h2><br>
+        Binary search works only on sorted arrays and is much faster than linear search. 
+        It repeatedly divides the array in half until the element is found.<br><br>
+
+        <h3>Steps for Binary Search:</h3><br>
+        1. Find the middle element of the array.<br>
+        2. If the middle element is the search value, return it.<br>
+        3. If the search value is smaller, search in the left half.<br>
+        4. If the search value is larger, search in the right half.<br>
+        5. Repeat until the element is found or the array is empty.<br><br>
+`
+   
+        sideNotes.style.width = max;
+    });
 
 drawArray();
