@@ -1,0 +1,35 @@
+body{
+    background-color: black;
+}
+
+canvas {
+    border: 2px solid rgb(255, 255, 255);
+}
+#canvas-container {
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    font-weight: bold
+}
+
+p{
+    color: white;
+    font-size: 50px;
+}
+
+.index-input,.value-input{
+    height: 30px;
+    border-radius: 5px;
+    color: black;
+    font-weight: bold;
+}
+
+.index-button,.value-button{
+    height: 36px;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    width: 120px;
+    background-color: blue;
+    border: none;
+}

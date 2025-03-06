@@ -4,26 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Array Visualizer</title>
-    <style>
-        canvas {
-            border: 1px solid black;
-        }
-        #canvas-container {
-            width: 100%;
-            overflow-x: auto;
-            white-space: nowrap;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+  
 </head>
 <body>
+    <p class="header">Array Visualizer</p>
     <div id="canvas-container">
         <canvas id="canvas" width="600" height="300"></canvas>
     </div>
     <br>
-    <input type="number" id="index" placeholder="Index">
-    <input type="number" id="value" placeholder="Value">
-    <button onclick="insertValue()">Insert</button>
-    <button onclick="deleteValue()">Delete</button>
+    <input type="number" id="index" class="index-input" placeholder="Index">
+    <input type="number" id="value" class="value-input" placeholder="Value">
+    <button onclick="insertValue()" class="index-button">Insert</button>
+    <button onclick="deleteValue()" class="value-button">Delete</button>
     
     <script>
         const canvas = document.getElementById("canvas");
@@ -44,7 +37,7 @@
                 ctx.fillStyle = "blue";
                 ctx.fillRect(x, y, barWidth, value * 4);
                 
-                ctx.fillStyle = "black";
+                ctx.fillStyle = "white";
                 ctx.fillText(value, x + barWidth / 2 - 10, y - 5);
                 ctx.fillText(i, x + barWidth / 2 - 5, canvas.height - 5);
             });
