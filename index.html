@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Visualizer</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="600" height="300"></canvas>
+    <br>
+    <input type="number" id="index" placeholder="Index">
+    <input type="number" id="value" placeholder="Value">
+    <button onclick="insertValue()">Insert</button>
+    <button onclick="deleteValue()">Delete</button>
+    
+    <script>
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+        let arr = [10, 30, 20, 40, 50]; // Sample array
+
+        function drawArray() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            let barWidth = 50;
+            let gap = 10;
+            arr.forEach((value, i) => {
+                let x = i * (barWidth + gap) + 20;
+                let y = canvas.height - value * 4; // Scale for better visibility
+                ctx.fillStyle = "blue";
+                ctx.fillRect(x, y, barWidth, value * 4);
+                
+                ctx.fillStyle = "black";
+                ctx.fillText(value, x + 15, y - 5);
+                ctx.fillText(i, x + 20, canvas.height - 5);
+            });
+        }
+
+        function insertValue() {
+            let index = parseInt(document.getElementById("index").value);
+            let value = parseInt(document.getElementById("value").value);
+            if (isNaN(index) || isNaN(value) || index < 0 || index > arr.length) return;
+            arr.splice(index, 0, value);
+            drawArray();
+        }
+
+        function deleteValue() {
+            let index = parseInt(document.getElementById("index").value);
+            if (isNaN(index) || index < 0 || index >= arr.length) return;
+            arr.splice(index, 1);
+            drawArray();
+        }
+
+        drawArray();
+    </script>
+</body>
+</html>
