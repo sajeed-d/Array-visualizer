@@ -8,10 +8,17 @@
         canvas {
             border: 1px solid black;
         }
+        #canvas-container {
+            width: 100%;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
     </style>
 </head>
 <body>
-    <canvas id="canvas" width="600" height="300"></canvas>
+    <div id="canvas-container">
+        <canvas id="canvas" width="600" height="300"></canvas>
+    </div>
     <br>
     <input type="number" id="index" placeholder="Index">
     <input type="number" id="value" placeholder="Value">
@@ -25,8 +32,12 @@
 
         function drawArray() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            let barWidth = 50;
+            let barWidth = Math.max(40, canvas.width / arr.length - 10);
             let gap = 10;
+            let totalWidth = arr.length * (barWidth + gap) + 20;
+            
+            canvas.width = Math.max(600, totalWidth); // Expand canvas width dynamically
+            
             arr.forEach((value, i) => {
                 let x = i * (barWidth + gap) + 20;
                 let y = canvas.height - value * 4; // Scale for better visibility
@@ -34,8 +45,8 @@
                 ctx.fillRect(x, y, barWidth, value * 4);
                 
                 ctx.fillStyle = "black";
-                ctx.fillText(value, x + 15, y - 5);
-                ctx.fillText(i, x + 20, canvas.height - 5);
+                ctx.fillText(value, x + barWidth / 2 - 10, y - 5);
+                ctx.fillText(i, x + barWidth / 2 - 5, canvas.height - 5);
             });
         }
 
